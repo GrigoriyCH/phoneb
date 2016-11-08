@@ -1,0 +1,125 @@
+<?php namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+
+class MainController extends Controller {
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+    public function gohome()
+    {
+        return view('homefb');
+    }
+    public function gofile()
+    {
+        return view('filefb');
+    }
+    public function goedit()
+    {
+        return view('editfb');
+    }
+    public function gofind()
+    {
+        return view('findfb');
+    }
+    public function goadd()
+    {
+        return view('add');
+    }
+    public function goeditor()
+    {
+        return view('editor');
+    }
+    public function godeletor()
+    {
+        return view('deletor');
+    }
+    public function gokontakt()
+    {
+        return view('sendcontakt');
+    }
+    public function goexport()
+    {
+        return view('export');
+    }
+    public function goimport()
+    {
+        return view('import');
+    }
+
+	public function index()
+	{
+		//
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
+}
