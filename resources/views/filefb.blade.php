@@ -17,7 +17,7 @@
 <hr>
 
 <?php
-if (isset($_GET['id']) and isset($_GET['path']))
+if (isset($_GET['id']) and ($_GET['id']!=null) and isset($_GET['path']) and ($_GET['path']!=null))
 {
     $path = $_GET['path'];
 
