@@ -30,3 +30,4 @@ Route::get('/edit/deletor',['uses'=>'MainController@godeletor','as'=>'deletor'])
 Route::get('/sendkontakt',['uses'=>'MainController@gokontakt','as'=>'kontakt']);
 Route::get('/import',['uses'=>'MainController@goimport','as'=>'import']);
 Route::get('/export',['uses'=>'MainController@goexport','as'=>'export']);
+Route::get('/save',['uses'=>'MainController@gosave','as'=>'save']);

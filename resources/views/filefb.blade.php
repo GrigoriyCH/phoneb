@@ -17,9 +17,9 @@
 <hr>
 
 <?php
-if (isset($_GET['id']) and ($_GET['id']!=null) and isset($_GET['path']) and ($_GET['path']!=null))
+if (isset($_GET['id']))
 {
-    $path = $_GET['path'];
+
 
     if($_GET['id']=="Экспорт записей")
     {
@@ -89,10 +89,12 @@ if (isset($_GET['id']) and ($_GET['id']!=null) and isset($_GET['path']) and ($_G
         }
         $result->close();
         $mysqli->close();
-        echo 'Создан XML-файл: ' . $doc->save($path) . ' bytes'; // Wrote: 72 bytes
+        echo 'Создан XML-файл: ' . $doc->save("db.xml") . ' bytes'; // Wrote: 72 bytes
     }
-    if($_GET['id']=="Импорт записей")
+    if(($_GET['id']=="Импорт записей") and ($_GET['path']!=null))
         {
+            $path = $_GET['path'];
+
             $xmlDoc = new DOMDocument();
             $xmlDoc->load($path);
 

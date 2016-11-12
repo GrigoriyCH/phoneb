@@ -52,6 +52,10 @@ class MainController extends Controller {
     {
         return view('import');
     }
+    public function gosave()
+    {
+        return view('save');
+    }
 
 	public function index()
 	{
