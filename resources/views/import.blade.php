@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-<form method="get">
-    <input type="text" name="path" placeholder="Введите полный путь к файлу (Например: C:/filename.xml)" size="60" value="">
-    <input type="submit" name="id" value="Импорт записей"/>
+<form action="/file" method="post"
+      enctype="multipart/form-data">
+
+    Выберите xml-файл для загрузки:
+    <input type="hidden" value="{!! csrf_token() !!}" name="_token">
+    <input type="file" name="ufile" /><br />
+
+    <input type="submit" name="send" value="Открыть!" />
 </form>
 
 </body>

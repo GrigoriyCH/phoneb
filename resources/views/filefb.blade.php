@@ -19,8 +19,6 @@
 <?php
 if (isset($_GET['id']))
 {
-
-
     if($_GET['id']=="Экспорт записей")
     {
         //подключение к бд
@@ -91,19 +89,73 @@ if (isset($_GET['id']))
         $mysqli->close();
         echo 'Создан XML-файл: ' . $doc->save("db.xml") . ' bytes'; // Wrote: 72 bytes
     }
-    if(($_GET['id']=="Импорт записей") and ($_GET['path']!=null))
+}
+
+if(isset($_POST['send']))
+{
+    // инициализируем нужные переменные
+    $filename = '';
+    $filepath = '';
+    $filetype = '';
+
+    // проверяем, что файл загружался
+    if(isset($_FILES['ufile']) &&
+            $_FILES['ufile']['error'] != 4)
+    {
+        // проверяем, что файл загрузился без ошибок
+        if($_FILES['ufile']['error'] != 1 &&
+                $_FILES['ufile']['error'] != 0)
         {
-            $path = $_GET['path'];
+            $error = $_FILES['ufile']['error'];
+            $errors []= 'Ошибка: Файл не загружен.'.
+                    ' Код ошибки: ' . $error;
+        }
+        else
+        {
+            // файл загружен на сервер
 
-            $xmlDoc = new DOMDocument();
-            $xmlDoc->load($path);
-
-            $x = $xmlDoc->documentElement;
-            foreach ($x->childNodes AS $item)
+            // проверяем файл на максимальный размер
+            $filesize = $_FILES['ufile']['size'];
+            if($_FILES['ufile']['error'] == 1 ||
+                    $filesize > 3145728)
             {
-                print $item->nodeName . " = " . $item->nodeValue . "<br>";
+                $filesize = ($filesize != 0)?
+                        sprintf('(%.2f Мб)' , $filesize / 1024): '';
+                die('Ошибка: Размер прикреплённого файла '.
+                        $filesize.' больше допустимого (3 Мб).');
+            }
+            else
+            {
+                $filename = $_FILES['ufile']['name'];
+                $filepath = $_FILES['ufile']['tmp_name'];
+                $filetype = $_FILES['ufile']['type'];
+                if($filetype == null ||
+                        $filetype == '')
+                    $filetype = 'unknown/unknown';
             }
         }
+    }
+
+    echo 'Успешно открыт файл: ' . $filename;
+    echo "<br/>";
+/*
+// $filename - имя загруженого файла
+    if(is_uploaded_file($filename))
+        move_uploaded_file($filename,
+                'files/' . basename($filename));
+    // файл будет перемещён в каталог files/
+*/
+    $path = $_FILES['ufile']['tmp_name'];
+
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load($path);
+
+    $x = $xmlDoc->documentElement;
+    foreach ($x->childNodes AS $item)
+    {
+        print $item->nodeName . " = " . $item->nodeValue . "<br>";
+    }
+
 }
 ?>
 <div id="page">

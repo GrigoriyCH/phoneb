@@ -21,7 +21,7 @@ Route::controllers([
 ]);
 */
 Route::get('/',['uses'=>'MainController@gohome','as'=>'home']);
-Route::get('/file',['uses'=>'MainController@gofile','as'=>'file']);
+Route::any('/file',['uses'=>'MainController@gofile','as'=>'file']);
 Route::get('/edit',['uses'=>'MainController@goedit','as'=>'edit']);
 Route::get('/find',['uses'=>'MainController@gofind','as'=>'find']);
 Route::get('/edit/add',['uses'=>'MainController@goadd','as'=>'add']);
